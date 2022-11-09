@@ -60,8 +60,16 @@ const searchData = async (e) =>{
     container.innerHTML = ''
     console.log(e.target.value);
     const dataList = await getData()
-    console.log(dataList[0]);
+    console.log(dataList[0].login);
     let filteredList = []
+    for (let i =0; i<dataList; i++){
+        if (dataList[i].login.startsWith(e.target.value)){
+            filteredList.push(dataList[i])
+        }
+    }
+    for (const data of filteredList) {
+        createCard(data)  
+    }
     // dataList.filter((item, input) => {item.login})
     
     console.log(dataList);
