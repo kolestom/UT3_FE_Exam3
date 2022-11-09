@@ -1,4 +1,6 @@
 const input = document.getElementById('input')
+const loading = document.getElementById('loading')
+
 
 const displayMoreLess = (e) => {
     if (e.target.nextElementSibling.style.display === 'block'){
@@ -50,7 +52,7 @@ const getData = async () => {
 const loadGallery = async () => {
     container.innerHTML = ''
     const dataList =  await getData()
-    
+    loading.style.display = 'none'
     for (const data of dataList) {
         createCard(data)  
     }
@@ -61,15 +63,18 @@ loadGallery()
 const filterCards = async (e) =>{
     console.log(e.target.value);
     const allCards = document.querySelectorAll('.card')
+    let visibleCards = 0
     console.dir(allCards);
     for (const card of allCards) {
-        const isVisible = card.childNodes[1].innerText.startsWith(e.target.value)
+        const isVisible = card.childNodes[1].innerText.startsWith(e.target.value);
         if (isVisible) {
             card.style.display = 'flex'
+            visibleCards++
         } else {
             card.style.display = 'none'
         }
     }   
+    (visibleCards) ? loading.style.display = 'none' : loading.style.display = 'block';loading.innerText = 'Nothing found'
 }
 
 input.addEventListener('input', filterCards)
