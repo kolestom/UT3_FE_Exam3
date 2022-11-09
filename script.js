@@ -2,8 +2,10 @@ const input = document.getElementById('input')
 
 const displayMoreLess = (e) => {
     if (e.target.nextElementSibling.style.display === 'block'){
+        e.target.innerText = 'Show more'
         e.target.nextElementSibling.style.display = 'none'
     } else {
+        e.target.innerText = 'Show less'
         e.target.nextElementSibling.style.display = 'block'
     }
 }
