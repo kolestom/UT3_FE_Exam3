@@ -73,8 +73,13 @@ const filterCards = async (e) =>{
         } else {
             card.style.display = 'none'
         }
-    }   
-    (visibleCards) ? loading.style.display = 'none' : loading.style.display = 'block';loading.innerText = 'Nothing found'
+    }
+    if (visibleCards) {
+        loading.style.display = 'none'
+    } else {
+        loading.style.display = 'block'
+        loading.innerText = 'Nothing found'
+    }
 }
 
 input.addEventListener('input', filterCards)
