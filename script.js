@@ -58,25 +58,18 @@ const loadGallery = async () => {
 
 loadGallery()
 
-const searchData = async (e) =>{
-    container.innerHTML = ''
+const filterCards = async (e) =>{
     console.log(e.target.value);
-    const dataList = await getData()
-    console.log(dataList[0].login);
-    let filteredList = []
-    for (let i =0; i<dataList; i++){
-        if (dataList[i].login.startsWith(e.target.value)){
-            filteredList.push(dataList[i])
+    const allCards = document.querySelectorAll('.card')
+    console.dir(allCards);
+    for (const card of allCards) {
+        const isVisible = card.childNodes[1].innerText.startsWith(e.target.value)
+        if (isVisible) {
+            card.style.display = 'flex'
+        } else {
+            card.style.display = 'none'
         }
-    }
-    for (const data of filteredList) {
-        createCard(data)  
-    }
-    // dataList.filter((item, input) => {item.login})
-    
-    console.log(dataList);
-
-    
+    }   
 }
 
-input.addEventListener('keyup', searchData)
+input.addEventListener('input', filterCards)
