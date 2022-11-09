@@ -51,6 +51,7 @@ const getData = async () => {
 
 const loadGallery = async () => {
     container.innerHTML = ''
+    loading.innerText = 'Loading...'
     const dataList =  await getData()
     loading.style.display = 'none'
     for (const data of dataList) {
